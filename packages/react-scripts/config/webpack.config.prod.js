@@ -110,6 +110,7 @@ module.exports = {
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
       'react-native': 'react-native-web',
+      'styled-components': path.resolve(paths.appPath, 'node_modules', 'styled-components')
     },
     plugins: [
       // Prevents users from importing files from outside of src/ (or node_modules/).
@@ -177,6 +178,7 @@ module.exports = {
               babelrc: false,
               presets: [require.resolve('babel-preset-react-app')],
               // @remove-on-eject-end
+              plugins: [require.resolve('babel-plugin-styled-components')],
               compact: true,
             },
           },
