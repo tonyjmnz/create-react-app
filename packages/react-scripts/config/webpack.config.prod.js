@@ -54,6 +54,10 @@ const extractTextPluginOptions = shouldUseRelativeAssetPaths
     { publicPath: Array(cssFilename.split('/').length).join('../') }
   : {};
 
+const minifyEnabled = process.env.ENABLE_MINIFICATION !== 'false';
+// `/a^/` matches nothing because ^ means "start of string"
+const uglifyFileRegex = minifyEnabled ? /\.js$/i : /a^/;
+
 // This is the production configuration.
 // It compiles slowly and is focused on producing a fast and minimal bundle.
 // The development configuration is different and lives in a separate file.
@@ -293,6 +297,7 @@ module.exports = {
     new webpack.DefinePlugin(env.stringified),
     // Minify the code.
     new webpack.optimize.UglifyJsPlugin({
+      test: uglifyFileRegex,
       compress: {
         warnings: false,
         // Disabled because of an issue with Uglify breaking seemingly valid code:
