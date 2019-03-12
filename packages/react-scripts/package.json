@@ -1,6 +1,6 @@
 {
   "name": "@paperlesspost/react-scripts",
-  "version": "2.1.8",
+  "version": "2.1.8-beta.0",
   "description": "Configuration and scripts for Create React App.",
   "repository": "paperlesspost/create-react-app",
   "license": "MIT",
