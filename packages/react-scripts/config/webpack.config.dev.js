@@ -36,7 +36,7 @@ const env = getClientEnvironment(publicUrl);
 module.exports = {
   // You may want 'eval' instead if you prefer to see the compiled output in DevTools.
   // See the discussion in https://github.com/facebookincubator/create-react-app/issues/343.
-  devtool: 'cheap-module-source-map',
+  devtool: 'inline-cheap-module-source-map',
   // These are the "entry points" to our application.
   // This means they will be the "root" imports that are included in JS bundle.
   // The first two entry points enable "hot" CSS and auto-refreshes for JS.
@@ -104,7 +104,11 @@ module.exports = {
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
       'react-native': 'react-native-web',
-      'styled-components': path.resolve(paths.appPath, 'node_modules', 'styled-components')
+      'styled-components': path.resolve(
+        paths.appPath,
+        'node_modules',
+        'styled-components'
+      ),
     },
     plugins: [
       // Prevents users from importing files from outside of src/ (or node_modules/).
@@ -180,10 +184,8 @@ module.exports = {
           },
           {
             test: /\.js$/,
-            use: [
-              require.resolve('source-map-loader')
-            ],
-            enforce: 'pre'
+            use: [require.resolve('source-map-loader')],
+            enforce: 'pre',
           },
           // "postcss" loader applies autoprefixer to our CSS.
           // "css" loader resolves paths in CSS and adds assets as dependencies.
